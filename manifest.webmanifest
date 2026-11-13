@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "Bastide Horizons Wellness",
+  "short_name": "Bastide Horizons",
+  "description": "Le bien-être au cœur d'une bastide provençale, dans la Drôme.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "background_color": "#EFE8DC",
+  "theme_color": "#EFE8DC",
+  "categories": ["travel", "lifestyle", "health"],
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

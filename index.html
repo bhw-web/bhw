@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bastide Horizons Wellness — Ouverture prochainement</title>
+  <meta name="description" content="Le bien-être au cœur d'une bastide provençale, dans la Drôme. Ouverture prochainement.">
+  <link rel="canonical" href="https://bastide-horizons-wellness.fr/">
+
+  <!-- Partage sur les réseaux sociaux (Open Graph, X/Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Bastide Horizons Wellness">
+  <meta property="og:title" content="Bastide Horizons Wellness — Ouverture prochainement">
+  <meta property="og:description" content="Le bien-être au cœur d'une bastide provençale, dans la Drôme. Ouverture prochainement.">
+  <meta property="og:url" content="https://bastide-horizons-wellness.fr/">
+  <meta property="og:image" content="https://bastide-horizons-wellness.fr/assets/partage.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo Bastide Horizons Wellness devant une bastide en pierre au milieu des oliviers et des lavandes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bastide Horizons Wellness — Ouverture prochainement">
+  <meta name="twitter:description" content="Le bien-être au cœur d'une bastide provençale, dans la Drôme. Ouverture prochainement.">
+  <meta name="twitter:image" content="https://bastide-horizons-wellness.fr/assets/partage.jpg">
+  <meta name="twitter:image:alt" content="Logo Bastide Horizons Wellness devant une bastide en pierre au milieu des oliviers et des lavandes">
+
+  <!-- Application web : écran d'accueil iOS / Android -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#EFE8DC">
+  <meta name="application-name" content="Bastide Horizons">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bastide Horizons">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <link rel="preload" as="image" href="assets/bastide.webp" type="image/webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Ciel : prolonge le haut de la photo */
+      --ciel-haut: #F1EADF;
+      --ciel-bas: #E5DED0;
+      --creme: #F4EEE3;
+      /* Textes : contrastes WCAG AA vérifiés sur le ciel le plus sombre (#DBD9CA) */
+      --encre: #2E2938;       /* 9,9:1 */
+      --encre-douce: #4F4657; /* 6,3:1 */
+      --or-texte: #7A5A2C;    /* 5,5:1 sur crème */
+      --or: #8A6532;          /* monogramme */
+      --or-clair: #E2C892;
+      --nuit: 46, 38, 56;
+      --serif: "Cormorant Garamond", "Didot", Georgia, serif;
+      --sans: "Jost", "Avenir Next", system-ui, sans-serif;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+    html {
+      height: 100%;
+      background: linear-gradient(to bottom, var(--ciel-haut), var(--ciel-bas) 50%) fixed var(--ciel-bas);
+      -webkit-text-size-adjust: 100%;
+      overscroll-behavior: none;
+    }
+
+    /* Une seule scène à la hauteur de l'écran. Si l'utilisateur agrandit le texte
+       (zoom, accessibilité), la page peut défiler au lieu de couper le contenu. */
+    body {
+      min-height: 100%;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      font-family: var(--sans);
+      color: var(--encre);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Photo unique, la même sur tous les écrans */
+    .fond {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .fond img {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: auto;
+      max-width: none;
+      height: max(56.25vw, 66vh);
+      height: max(56.25vw, 66dvh);
+      aspect-ratio: 16 / 9;
+      translate: -50% 0;
+      transform-origin: 50% 100%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 16%);
+      mask-image: linear-gradient(to bottom, transparent, #000 16%);
+      animation: respire 2.4s var(--ease) both;
+    }
+    /* Écrans plus larges que la photo : elle couvre tout l'écran */
+    @media (min-aspect-ratio: 16/9) {
+      .fond img {
+        left: 0;
+        translate: none;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 25%;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+    }
+    /* Écrans ultra-larges : on garde la lavande, le texte se resserre (règles plus bas) */
+    @media (min-aspect-ratio: 2/1) {
+      .fond img { object-position: 50% 50%; }
+    }
+
+    /* Bloc d'accueil, toujours dans le ciel */
+    main {
+      align-self: start;
+      justify-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 40rem;
+      padding: calc(env(safe-area-inset-top) + clamp(20px, 5vh, 64px)) 16px 24px;
+    }
+
+    .logo {
+      position: relative;
+      width: clamp(104px, 17vh, 168px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--creme);
+      box-shadow: 0 10px 24px -12px rgba(70, 45, 15, .45);
+    }
+    .logo img {
+      position: absolute;
+      inset: 12%;
+      width: 76%;
+      height: 76%;
+    }
+    /* Anneau en fil d'or brodé, en relief */
+    .logo .anneau {
+      inset: -2%;
+      width: 104%;
+      height: 104%;
+      filter:
+        drop-shadow(0 1px 0 rgba(255, 240, 200, .55))
+        drop-shadow(0 1.5px 1px rgba(70, 45, 15, .55))
+        drop-shadow(0 3px 5px rgba(70, 45, 15, .25));
+    }
+    .logo span {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(30px, 5vh, 50px);
+      letter-spacing: .02em;
+      color: var(--or);
+      line-height: 1;
+      transform: translateY(-2%);
+    }
+
+    h1 {
+      margin-top: clamp(14px, 2.6vh, 28px);
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(40px, 6.4vh, 72px);
+      line-height: 1.02;
+      letter-spacing: .005em;
+      color: var(--encre);
+    }
+    h1 small {
+      display: block;
+      margin-top: .6em;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: clamp(13px, 1.6vh, 15px);
+      line-height: 1.2;
+      letter-spacing: .4em;
+      padding-left: .4em;
+      text-transform: uppercase;
+      color: var(--encre-douce);
+    }
+
+    .filet {
+      width: 64px;
+      height: 1px;
+      margin: clamp(12px, 2.2vh, 22px) auto;
+      border: 0;
+      background: linear-gradient(90deg, transparent, var(--or), transparent);
+    }
+
+    .ouverture {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(22px, 3.1vh, 32px);
+      line-height: 1.25;
+      color: var(--encre);
+      text-wrap: balance;
+    }
+
+    /* Pied de page fondu dans la lavande */
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0 24px;
+      padding: 36px 16px calc(env(safe-area-inset-bottom) + 6px);
+      font-size: 13px;
+      letter-spacing: .06em;
+      color: var(--creme);
+      text-shadow: 0 1px 2px rgba(var(--nuit), .6);
+      background: linear-gradient(to top, rgba(var(--nuit), .78), rgba(var(--nuit), .45) 55%, rgba(var(--nuit), 0));
+    }
+    footer button {
+      font: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0 2px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+      text-decoration-color: rgba(244, 238, 227, .5);
+      transition: text-decoration-color .3s var(--ease);
+    }
+    footer button:hover { text-decoration-color: var(--or-clair); }
+    footer button:focus-visible { outline: 2px solid var(--or-clair); outline-offset: 2px; border-radius: 2px; }
+
+    /* Mentions légales */
+    dialog {
+      margin: auto;
+      width: min(520px, calc(100vw - 32px));
+      max-height: calc(100dvh - 48px);
+      overflow: auto;
+      padding: 36px 32px 28px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--creme);
+      color: var(--encre);
+      box-shadow: 0 0 0 1px rgba(138, 101, 50, .35), 0 30px 80px -20px rgba(var(--nuit), .45);
+    }
+    dialog[open] { animation: apparait .45s var(--ease) both; }
+    dialog::backdrop {
+      background: rgba(var(--nuit), .45);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+    dialog h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+    dialog dl { display: grid; gap: 16px; font-size: 15px; line-height: 1.55; }
+    dialog dt {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--or-texte);
+      margin-bottom: 2px;
+    }
+    dialog dd { margin: 0; }
+    dialog a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(122, 90, 44, .6);
+      text-underline-offset: 3px;
+    }
+    dialog a:hover { text-decoration-color: var(--or-texte); }
+    dialog a:focus-visible, dialog .fermer:focus-visible { outline: 2px solid var(--or-texte); outline-offset: 3px; }
+    dialog .fermer {
+      margin-top: 26px;
+      min-height: 44px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--encre);
+      background: none;
+      border: 1px solid var(--or-texte);
+      padding: 11px 22px;
+      cursor: pointer;
+      transition: background-color .3s var(--ease), color .3s var(--ease);
+    }
+    dialog .fermer:hover { background: var(--or-texte); color: var(--creme); }
+    dialog .fermer:active { transform: translateY(1px); }
+
+    /* Entrée de la scène : une seule respiration */
+    main > * { animation: monte 1.2s var(--ease) both; }
+    main > :nth-child(2) { animation-delay: .15s; }
+    main > :nth-child(3) { animation-delay: .3s; }
+    main > :nth-child(4) { animation-delay: .45s; }
+    footer { animation: monte 1.2s .6s var(--ease) both; }
+
+    @keyframes respire { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: none; } }
+    @keyframes monte { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @keyframes apparait { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    @media (min-aspect-ratio: 2/1) and (min-height: 521px) {
+      main { padding-top: calc(env(safe-area-inset-top) + 3.5vh); }
+      .logo { width: 13vh; }
+      .logo span { font-size: 4vh; }
+      h1 { margin-top: 2vh; font-size: 5.4vh; }
+      .filet { margin: 1.6vh auto; }
+      .ouverture { font-size: 2.7vh; }
+    }
+
+    /* Téléphone à l'horizontale : logo à gauche du texte */
+    @media (orientation: landscape) and (max-height: 520px) {
+      main {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 20px;
+        align-items: center;
+        text-align: left;
+        max-width: none;
+        padding-top: calc(env(safe-area-inset-top) + 14px);
+      }
+      .logo { width: 84px; grid-row: 1 / span 3; }
+      .logo span { font-size: 26px; }
+      h1 { margin-top: 0; font-size: 32px; }
+      h1 small { font-size: 12px; margin-top: .4em; }
+      .filet { margin: 8px 0; }
+      .ouverture { font-size: 20px; }
+      footer { padding-top: 22px; padding-bottom: calc(env(safe-area-inset-bottom) + 6px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="fond" aria-hidden="true">
+    <picture>
+      <source srcset="assets/bastide.webp" type="image/webp">
+      <img src="assets/bastide.jpg" alt="" width="2048" height="1152" fetchpriority="high">
+    </picture>
+  </div>
+
+  <main>
+    <div class="logo" role="img" aria-label="Logo Bastide Horizons : initiales BH dans une couronne d'olivier et de lavande cerclée d'or">
+      <img src="assets/couronne.webp" alt="" width="640" height="640">
+      <img class="anneau" src="assets/anneau.webp" alt="" width="640" height="640">
+      <span aria-hidden="true">BH</span>
+    </div>
+    <h1>Bastide Horizons <small>Wellness</small></h1>
+    <hr class="filet" aria-hidden="true">
+    <p class="ouverture">Ouverture prochainement</p>
+  </main>
+
+  <footer>
+    <p>© <span id="annee">2026</span> Bastide Horizons Wellness</p>
+    <button type="button" id="ouvrir-mentions" aria-haspopup="dialog" aria-controls="mentions">Mentions légales</button>
+  </footer>
+
+  <dialog id="mentions" aria-labelledby="titre-mentions">
+    <h2 id="titre-mentions">Mentions légales</h2>
+    <dl>
+      <div>
+        <dt>Éditeur du site</dt>
+        <dd>SAS BASTIDE HORIZONS WELLNESS<br>RCS Romans 132 450 693</dd>
+      </div>
+      <div>
+        <dt>Siège social</dt>
+        <dd>293 Chemin des Combes, Grange Basse<br>26110 Piégon</dd>
+      </div>
+      <div>
+        <dt>Directeur de la publication</dt>
+        <dd>Thierry Tossings</dd>
+      </div>
+      <div>
+        <dt>Contact</dt>
+        <dd><a href="mailto:contact@bastide-horizons-wellness.fr">contact@bastide-horizons-wellness.fr</a></dd>
+      </div>
+      <div>
+        <dt>Hébergeur</dt>
+        <dd>GitHub, Inc. (GitHub Pages)<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</dd>
+      </div>
+    </dl>
+    <form method="dialog">
+      <button class="fermer" autofocus>Fermer</button>
+    </form>
+  </dialog>
+
+  <script>
+    var d = document.getElementById('mentions');
+    document.getElementById('ouvrir-mentions').addEventListener('click', function () { d.showModal(); });
+    d.addEventListener('click', function (e) {
+      var r = d.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close();
+    });
+    document.getElementById('annee').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
